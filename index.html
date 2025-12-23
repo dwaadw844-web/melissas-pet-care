@@ -629,6 +629,12 @@
                     <p>Intuitive connection to understand your pet's thoughts, feelings, and needs on a deeper level!</p>
                     <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Click to learn more ✨</p>
                 </div>
+                <div class="service-item" onclick="openModal('walking')" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    <div class="service-icon">🚶‍♀️🐕</div>
+                    <h3>Dog Walking</h3>
+                    <p>Professional dog walking services to keep your pup happy, healthy, and exercised!</p>
+                    <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Click to learn more ✨</p>
+                </div>
             </div>
         </div>
 
@@ -675,7 +681,7 @@
                     Ready to give your pets the best care while you're away?
                 </p>
                 <p style="font-size: 1.2em; margin-top: 20px;">
-                    📧 Email: Melissaspawsomepetcare@gmail.com<br>
+                    📧 Email: Melissaspawsomepetcare<br>@gmail.com<br>
                     📱 Phone: (720)-527-9291<br>
                     📍 Serving the local area with love and care!
                 </p>
@@ -867,6 +873,44 @@
 
                 <p style="margin-top: 20px; font-style: italic; color: #4a90e2;">
                     <strong>Special Note:</strong> Animal communication complements veterinary care but does not replace professional medical diagnosis. Always consult your vet for health concerns.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="walkingModal" class="modal" onclick="closeModalOnBackground(event, 'walking')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal('walking'); event.stopPropagation();">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">🚶‍♀️🐕</div>
+                <h2 class="modal-title">Professional Dog Walking Services</h2>
+            </div>
+            <div class="modal-body">
+                <p><strong>Keep your dog happy, healthy, and well-exercised!</strong></p>
+                <p>Regular walks are essential for your dog's physical health and mental wellbeing. Our professional dog walking service ensures your pup gets the exercise, stimulation, and outdoor time they need!</p>
+                
+                <h3 style="color: #667eea; margin-top: 25px; margin-bottom: 15px;">What We Provide:</h3>
+                <ul>
+                    <li>🐕 <strong>Individual or Group Walks:</strong> Personalized walks based on your dog's needs and preferences</li>
+                    <li>⏰ <strong>Flexible Scheduling:</strong> Morning, afternoon, or evening walks to fit your schedule</li>
+                    <li>🏃 <strong>Exercise & Stimulation:</strong> Proper pacing and activities suited to your dog's age and energy level</li>
+                    <li>🌳 <strong>Safe Routes:</strong> Carefully selected walking paths in safe, dog-friendly areas</li>
+                    <li>💦 <strong>Fresh Water Breaks:</strong> Hydration breaks during longer walks</li>
+                    <li>📱 <strong>GPS Tracking & Updates:</strong> Real-time updates with photos during the walk</li>
+                    <li>🧹 <strong>Clean-Up Service:</strong> We always clean up after your dog</li>
+                    <li>🎯 <strong>Basic Training Reinforcement:</strong> Positive reinforcement of good leash manners</li>
+                </ul>
+
+                <h3 style="color: #667eea; margin-top: 25px; margin-bottom: 15px;">Walk Options:</h3>
+                <ul>
+                    <li>⚡ <strong>Quick Potty Break:</strong> 15-20 minute walk</li>
+                    <li>🚶 <strong>Standard Walk:</strong> 30 minute walk</li>
+                    <li>🏃 <strong>Extended Walk:</strong> 45-60 minute adventure</li>
+                    <li>📅 <strong>Regular Schedule:</strong> Daily, weekly, or custom schedules available</li>
+                </ul>
+
+                <p style="margin-top: 20px; font-style: italic; color: #4a90e2;">
+                    <strong>Perfect For:</strong> Busy schedules, senior owners, post-surgery recovery, high-energy dogs, or just giving your pup extra exercise and socialization!
                 </p>
             </div>
         </div>
