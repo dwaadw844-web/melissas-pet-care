@@ -531,29 +531,169 @@
         }
 
         @media (max-width: 768px) {
+            header {
+                padding: 20px 15px;
+            }
+
+            header img {
+                max-width: 150px !important;
+            }
+
             h1 {
-                font-size: 2.5em;
+                font-size: 2em;
+                line-height: 1.2;
             }
 
             .tagline {
-                font-size: 1.2em;
+                font-size: 1em;
             }
 
             h2 {
-                font-size: 2em;
+                font-size: 1.8em;
+            }
+
+            .container {
+                padding: 0 15px;
+                margin: 30px auto;
+            }
+
+            .card {
+                padding: 25px 20px;
+                margin: 20px 0;
             }
 
             .services {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-item {
+                padding: 25px 20px;
+            }
+
+            .service-item h3 {
+                font-size: 1.5em;
+            }
+
+            .service-item p {
+                font-size: 0.95em;
+            }
+
+            .about {
+                font-size: 1.1em;
+            }
+
+            .about p {
+                text-align: left;
+            }
+
+            .warning-box {
+                padding: 20px 15px;
+            }
+
+            .warning-box h3 {
+                font-size: 1.5em;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            ul {
+                padding-left: 0;
+            }
+
+            ul li {
+                font-size: 1em;
+                padding: 10px 0;
+            }
+
+            .cta-button {
+                padding: 15px 35px;
+                font-size: 1.3em;
+                width: 90%;
+                text-align: center;
             }
 
             .modal-content {
                 width: 95%;
-                padding: 30px 20px;
+                padding: 25px 15px;
+                margin: 10% auto;
+                max-height: 80vh;
             }
 
             .modal-title {
-                font-size: 2em;
+                font-size: 1.8em;
+            }
+
+            .modal-icon {
+                font-size: 4em;
+            }
+
+            .modal-body {
+                font-size: 1em;
+            }
+
+            .modal-body h3 {
+                font-size: 1.3em;
+            }
+
+            .modal-body li {
+                font-size: 0.95em;
+                padding: 12px;
+            }
+
+            .close {
+                font-size: 35px;
+            }
+
+            footer {
+                padding: 20px 15px;
+            }
+
+            footer p {
+                font-size: 1em;
+            }
+
+            .paw-print {
+                font-size: 25px;
+            }
+
+            .animal-emoji {
+                font-size: 35px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .tagline {
+                font-size: 0.9em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .service-item h3 {
+                font-size: 1.3em;
+            }
+
+            .service-icon {
+                font-size: 3em;
+            }
+
+            .cta-button {
+                font-size: 1.2em;
+                padding: 12px 30px;
+            }
+
+            .modal-title {
+                font-size: 1.5em;
+            }
+
+            .modal-icon {
+                font-size: 3.5em;
             }
         }
     </style>
