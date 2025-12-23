@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Robots</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .robot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .robot-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .robot-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .robot-icon {
+            font-size: 4em;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .robot-card h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .robot-card p {
+            color: #666;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .fun-facts {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .fun-facts h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .fun-facts ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .fun-facts li {
+            padding: 10px 0;
+            color: #666;
+            border-bottom: 1px solid #eee;
+        }
+
+        .fun-facts li:before {
+            content: "🤖 ";
+            margin-right: 10px;
+        }
+
+        .interactive-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .interactive-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin: 10px;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #robot-message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #667eea;
+            min-height: 30px;
+        }
+
+        .robot-animation {
+            font-size: 5em;
+            text-align: center;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .robot-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Amazing Robots 🤖</h1>
+            <p class="subtitle">Discover the wonderful world of robotics!</p>
+        </header>
+
+        <div class="robot-grid">
+            <div class="robot-card">
+                <div class="robot-icon">🦾</div>
+                <h2>Industrial Robots</h2>
+                <p>These powerful robots work in factories, building cars, assembling electronics, and helping manufacture products faster and more precisely than ever before!</p>
+            </div>
+
+            <div class="robot-card">
+                <div class="robot-icon">🏥</div>
+                <h2>Medical Robots</h2>
+                <p>Surgical robots help doctors perform delicate operations with incredible precision. They can save lives and help patients recover faster!</p>
+            </div>
+
+            <div class="robot-card">
+                <div class="robot-icon">🚗</div>
+                <h2>Self-Driving Cars</h2>
+                <p>Autonomous vehicles use sensors, cameras, and AI to navigate roads safely. They're the future of transportation!</p>
+            </div>
+
+            <div class="robot-card">
+                <div class="robot-icon">🏠</div>
+                <h2>Home Robots</h2>
+                <p>From vacuum cleaners to lawn mowers, home robots make our lives easier by handling chores automatically!</p>
+            </div>
+
+            <div class="robot-card">
+                <div class="robot-icon">🌊</div>
+                <h2>Underwater Robots</h2>
+                <p>ROVs (Remotely Operated Vehicles) explore the ocean depths, discovering new species and studying marine life!</p>
+            </div>
+
+            <div class="robot-card">
+                <div class="robot-icon">🚀</div>
+                <h2>Space Robots</h2>
+                <p>Rovers on Mars and robots on space stations help us explore the universe and conduct experiments in space!</p>
+            </div>
+        </div>
+
+        <div class="fun-facts">
+            <h2>Fun Robot Facts!</h2>
+            <ul>
+                <li>The word "robot" comes from the Czech word "robota" meaning "forced labor"</li>
+                <li>The first industrial robot was installed in 1961 at a General Motors plant</li>
+                <li>Some robots can learn from their mistakes using artificial intelligence</li>
+                <li>There are over 3 million industrial robots working worldwide</li>
+                <li>Japan has more robots than any other country</li>
+                <li>Some robots can run faster than humans - like Boston Dynamics' Cheetah robot!</li>
+                <li>Robots don't get tired, so they can work 24/7 without breaks</li>
+            </ul>
+        </div>
+
+        <div class="interactive-section">
+            <h2>Talk to a Robot!</h2>
+            <div class="robot-animation">🤖</div>
+            <button onclick="robotGreeting()">Say Hello!</button>
+            <button onclick="robotJoke()">Tell a Joke!</button>
+            <button onclick="robotFact()">Robot Fact!</button>
+            <button onclick="robotDance()">Make it Dance!</button>
+            <div id="robot-message"></div>
+        </div>
+    </div>
+
+    <script>
+        const greetings = [
+            "Hello, human! 👋 I'm so happy to meet you!",
+            "Beep boop! Greetings from the robot world! 🌟",
+            "Hi there! Ready to learn about robots? 🚀",
+            "Welcome, friend! Let's explore robotics together! 💫"
+        ];
+
+        const jokes = [
+            "Why did the robot go on a diet? It had too many bytes! 😄",
+            "What's a robot's favorite type of music? Heavy metal! 🎸",
+            "Why was the robot tired? It had a hard drive! 💤",
+            "How do robots eat chips? One byte at a time! 🍟",
+            "Why did the robot cross the road? It was programmed to! 🤖"
+        ];
+
+        const facts = [
+            "Did you know? The Mars Curiosity rover has its own Twitter account! 🚀",
+            "Amazing fact: Some robots can recognize and respond to human emotions! 😊",
+            "Cool info: Robotic prosthetics can now be controlled by thoughts! 🧠",
+            "Wow! There are robot chefs that can flip burgers perfectly every time! 🍔",
+            "Incredible: Some robots can paint artwork and create music! 🎨"
+        ];
+
+        function robotGreeting() {
+            const message = greetings[Math.floor(Math.random() * greetings.length)];
+            displayMessage(message);
+        }
+
+        function robotJoke() {
+            const joke = jokes[Math.floor(Math.random() * jokes.length)];
+            displayMessage(joke);
+        }
+
+        function robotFact() {
+            const fact = facts[Math.floor(Math.random() * facts.length)];
+            displayMessage(fact);
+        }
+
+        function robotDance() {
+            const robot = document.querySelector('.robot-animation');
+            robot.style.animation = 'none';
+            setTimeout(() => {
+                robot.style.animation = 'bounce 0.5s 5';
+            }, 10);
+            displayMessage("Look at me dance! 💃🕺 *beep boop beep*");
+        }
+
+        function displayMessage(message) {
+            const messageDiv = document.getElementById('robot-message');
+            messageDiv.style.opacity = '0';
+            setTimeout(() => {
+                messageDiv.textContent = message;
+                messageDiv.style.transition = 'opacity 0.5s';
+                messageDiv.style.opacity = '1';
+            }, 200);
+        }
+
+        // Add click animation to robot cards
+        document.querySelectorAll('.robot-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const icon = this.querySelector('.robot-icon');
+                icon.style.transform = 'rotate(360deg) scale(1.2)';
+                icon.style.transition = 'transform 0.5s';
+                setTimeout(() => {
+                    icon.style.transform = 'rotate(0deg) scale(1)';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

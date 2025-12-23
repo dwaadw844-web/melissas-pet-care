@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War Robots - Winter 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
+            background-attachment: fixed;
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '2026 WINTER';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 15em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.02);
+            pointer-events: none;
+            z-index: 0;
+            white-space: nowrap;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 80px 20px;
+            background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(233, 69, 96, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '❄️ WINTER 2026 ❄️';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8em;
+            opacity: 0.95;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255,255,255,0.9);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        header::after {
+            content: '🎮 2026 BATTLE SEASON 🎮';
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2em;
+            opacity: 0.9;
+            color: #fff;
+            letter-spacing: 4px;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.9); }
+            50% { text-shadow: 0 0 40px rgba(255,255,255,1), 0 0 60px rgba(233, 69, 96, 0.8); }
+        }
+
+        h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.6);
+            letter-spacing: 4px;
+            animation: title-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes title-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            opacity: 0.95;
+            color: #f0f0f0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .weapon-icons {
+            margin-top: 30px;
+            font-size: 3em;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .weapon-icon {
+            display: inline-block;
+            animation: weapon-bounce 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(233, 69, 96, 0.8));
+        }
+
+        .weapon-icon:nth-child(1) { animation-delay: 0s; }
+        .weapon-icon:nth-child(2) { animation-delay: 0.2s; }
+        .weapon-icon:nth-child(3) { animation-delay: 0.4s; }
+        .weapon-icon:nth-child(4) { animation-delay: 0.6s; }
+        .weapon-icon:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes weapon-bounce {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-15px) rotate(10deg) scale(1.2);
+            }
+        }
+
+        .robot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            margin-top: 30px;
+        }
+
+        .robot-card {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.85) 0%, rgba(26, 26, 46, 0.85) 100%);
+            border-radius: 25px;
+            padding: 35px;
+            border: 3px solid rgba(233, 69, 96, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .robot-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.15) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .robot-card:hover::before {
+            opacity: 1;
+        }
+
+        .robot-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: #e94560;
+            box-shadow: 0 20px 60px rgba(233, 69, 96, 0.6);
+        }
+
+        .robot-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .robot-icon {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 0 25px rgba(233, 69, 96, 0.7));
+            animation: float 3s ease-in-out infinite;
+            border: 4px solid rgba(255,255,255,0.4);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .robot-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .robot-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .robot-title h2 {
+            color: #e94560;
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px rgba(233, 69, 96, 0.6);
+        }
+
+        .robot-class {
+            color: #ffa500;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .robot-description {
+            color: #ddd;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            padding: 18px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            border-left: 4px solid #e94560;
+            font-size: 1.05em;
+        }
+
+        .abilities {
+            margin-top: 20px;
+            padding: 18px;
+            background: rgba(233, 69, 96, 0.15);
+            border-radius: 12px;
+            border: 2px solid rgba(233, 69, 96, 0.4);
+        }
+
+        .abilities h3 {
+            color: #e94560;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        .abilities p {
+            color: #ccc;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+
+        .rating {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        .rating-item {
+            flex: 1;
+            min-width: 130px;
+            text-align: center;
+            padding: 15px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 10px;
+            border: 2px solid rgba(233, 69, 96, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .rating-item:hover {
+            background: rgba(233, 69, 96, 0.2);
+            border-color: #e94560;
+            transform: scale(1.05);
+        }
+
+        .rating-label {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .rating-value {
+            font-size: 1.8em;
+            color: #ffa500;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
+        }
+
+        .stats-section {
+            margin-top: 25px;
+        }
+
+        .stats-section h3 {
+            color: #4ecca3;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3em;
+        }
+
+        .stat-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stat-list li {
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            background: rgba(78, 204, 163, 0.12);
+            border-radius: 10px;
+            border-left: 4px solid #4ecca3;
+            transition: all 0.3s ease;
+            font-size: 1.05em;
+        }
+
+        .stat-list li:hover {
+            background: rgba(78, 204, 163, 0.25);
+            transform: translateX(8px);
+            border-left-width: 6px;
+        }
+
+        .weak-section h3 {
+            color: #ff6b6b;
+        }
+
+        .weak-section .stat-list li {
+            background: rgba(255, 107, 107, 0.12);
+            border-left-color: #ff6b6b;
+        }
+
+        .weak-section .stat-list li:hover {
+            background: rgba(255, 107, 107, 0.25);
+        }
+
+        /* Explosion and battle effects */
+        .explosion {
+            position: fixed;
+            pointer-events: none;
+            font-size: 3.5em;
+            animation: explode 1.2s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.8) rotate(180deg);
+                opacity: 0.9;
+            }
+            100% {
+                transform: scale(3.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .bullet {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ffa500, #ff6b00);
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 20px #ffa500, 0 0 40px #ff6b00;
+            z-index: 9998;
+        }
+
+        .snowflake {
+            position: fixed;
+            color: white;
+            font-size: 2em;
+            animation: snow-fall linear infinite;
+            pointer-events: none;
+            text-shadow: 0 0 8px rgba(255,255,255,0.9);
+            z-index: 0;
+        }
+
+        @keyframes snow-fall {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) translateX(120px) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8em;
+            }
+            
+            .robot-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .robot-icon {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚔️ WAR ROBOTS ⚔️</h1>
+            <p class="subtitle">Ultimate Mech Battle Guide</p>
+            <div class="weapon-icons">
+                <span class="weapon-icon">🔫</span>
+                <span class="weapon-icon">💥</span>
+                <span class="weapon-icon">🚀</span>
+                <span class="weapon-icon">⚡</span>
+                <span class="weapon-icon">🔥</span>
+            </div>
+        </header>
+
+        <div class="robot-grid">
+            <!-- Nether -->
+            <div class="robot-card">
+                <div class="robot-header">
+                    <div class="robot-title">
+                        <h2>Nether</h2>
+                        <div class="robot-class">Phantom Striker</div>
+                    </div>
+                </div>
+                
+                <div class="robot-description">
+                    A supernatural robot that exists between dimensions. Nether uses phase-shifting technology to become untargetable, allowing it to bypass enemy defenses and strike from impossible angles. Masters of map control and psychological warfare.
+                </div>
+
+                <div class="abilities">
+                    <h3>⚡ Special Ability: Dimensional Shift</h3>
+                    <p>Phase into another dimension for 5 seconds, becoming completely untargetable and able to pass through obstacles. Can teleport to any location within 100m upon exiting. While phased, marks enemies for 20% damage amplification. Cooldown: 22 seconds.</p>
+                </div>
+
+                <div class="rating">
+                    <div class="rating-item">
+                        <div class="rating-label">Firepower</div>
+                        <div class="rating-value">7/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Durability</div>
+                        <div class="rating-value">5/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Speed</div>
+                        <div class="rating-value">8/10</div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>✅ Strengths</h3>
+                    <ul class="stat-list">
+                        <li>Unmatched positioning flexibility with teleportation</li>
+                        <li>Complete invulnerability during phase shift</li>
+                        <li>Can bypass all obstacles and defensive positions</li>
+                        <li>Damage amplification helps entire team</li>
+                        <li>Excellent for flanking and surprise attacks</li>
+                        <li>Best beacon capture capabilities in game</li>
+                        <li>Can escape almost any dangerous situation</li>
+                        <li>Psychological pressure on enemy team</li>
+                    </ul>
+                </div>
+
+                <div class="stats-section weak-section">
+                    <h3>❌ Weaknesses</h3>
+                    <ul class="stat-list">
+                        <li>Low health makes mistakes very punishing</li>
+                        <li>Long cooldown creates vulnerability windows</li>
+                        <li>Moderate firepower struggles against tanks</li>
+                        <li>Requires excellent map knowledge to maximize</li>
+                        <li>Poor teleport placement can be fatal</li>
+                        <li>Team must capitalize on damage marks to be effective</li>
+                        <li>High skill ceiling - difficult to master</li>
+                        <li>Expensive to upgrade and maintain</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Kaji -->
+            <div class="robot-card">
+                <div class="robot-header">
+                    <div class="robot-title">
+                        <h2>Kaji</h2>
+                        <div class="robot-class">Berserker</div>
+                    </div>
+                </div>
+                
+                <div class="robot-description">
+                    An aggressive close-quarters combat specialist named after the Japanese word for fire. Kaji thrives in chaotic melee combat, dealing devastating damage at point-blank range while its energy shields absorb punishment.
+                </div>
+
+                <div class="abilities">
+                    <h3>⚡ Special Ability: Burning Rage</h3>
+                    <p>Ignites energy core, gaining 50% movement speed and 25% damage boost for 7 seconds. Enemies within 30m take damage over time from intense heat. Upon ability end, releases shockwave dealing area damage. Cooldown: 18 seconds.</p>
+                </div>
+
+                <div class="rating">
+                    <div class="rating-item">
+                        <div class="rating-label">Firepower</div>
+                        <div class="rating-value">10/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Durability</div>
+                        <div class="rating-value">6/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Speed</div>
+                        <div class="rating-value">8/10</div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>✅ Strengths</h3>
+                    <ul class="stat-list">
+                        <li>Absolutely devastating in close-range combat</li>
+                        <li>Burning Rage ability decimates grouped enemies</li>
+                        <li>High base movement speed for a heavy hitter</li>
+                        <li>Area-of-effect damage punishes clusters</li>
+                        <li>Shockwave finish secures kills on retreating enemies</li>
+                        <li>Excellent for aggressive beacon rushing</li>
+                        <li>Intimidating presence forces enemy repositioning</li>
+                    </ul>
+                </div>
+
+                <div class="stats-section weak-section">
+                    <h3>❌ Weaknesses</h3>
+                    <ul class="stat-list">
+                        <li>Completely useless at long range</li>
+                        <li>Moderate durability can't sustain extended fights</li>
+                        <li>Highly vulnerable during ability cooldown</li>
+                        <li>Easily kited by faster robots</li>
+                        <li>Open maps with long sight lines are death traps</li>
+                        <li>Energy weapons drain shields quickly</li>
+                        <li>Requires aggressive playstyle - not beginner friendly</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Unknown Seraph -->
+            <div class="robot-card">
+                <div class="robot-header">
+                    <div class="robot-title">
+                        <h2>Unknown Seraph</h2>
+                        <div class="robot-class">Stealth Assassin</div>
+                    </div>
+                </div>
+                
+                <div class="robot-description">
+                    A mysterious and agile robot with advanced stealth capabilities. Unknown Seraph specializes in hit-and-run tactics, appearing from nowhere to eliminate high-value targets before vanishing into the shadows.
+                </div>
+
+                <div class="abilities">
+                    <h3>⚡ Special Ability: Divine Cloak</h3>
+                    <p>Enters stealth mode for 8 seconds, becoming invisible to enemies. While cloaked, gains 20% movement speed boost. First attack out of stealth deals 40% bonus damage. Cooldown: 15 seconds.</p>
+                </div>
+
+                <div class="rating">
+                    <div class="rating-item">
+                        <div class="rating-label">Firepower</div>
+                        <div class="rating-value">7/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Durability</div>
+                        <div class="rating-value">4/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Speed</div>
+                        <div class="rating-value">9/10</div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>✅ Strengths</h3>
+                    <ul class="stat-list">
+                        <li>Excellent stealth capabilities for ambush attacks</li>
+                        <li>High mobility allows quick repositioning</li>
+                        <li>Perfect for taking out isolated enemies</li>
+                        <li>Bonus stealth damage is devastating</li>
+                        <li>Great for capturing undefended beacons</li>
+                        <li>Can escape dangerous situations easily</li>
+                    </ul>
+                </div>
+
+                <div class="stats-section weak-section">
+                    <h3>❌ Weaknesses</h3>
+                    <ul class="stat-list">
+                        <li>Very low health pool - can't sustain prolonged fights</li>
+                        <li>Quantum radar completely negates stealth advantage</li>
+                        <li>Weak against area-of-effect weapons</li>
+                        <li>Requires skilled positioning and timing</li>
+                        <li>Struggles in open areas with no cover</li>
+                        <li>Ineffective in direct confrontations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Baihu Lynx -->
+            <div class="robot-card">
+                <div class="robot-header">
+                    <div class="robot-title">
+                        <h2>Baihu Lynx</h2>
+                        <div class="robot-class">Support Specialist</div>
+                    </div>
+                </div>
+                
+                <div class="robot-description">
+                    A versatile support robot inspired by the white tiger. Baihu Lynx excels at providing team support through healing, shields, and tactical advantages. This robot is essential for coordinated team play.
+                </div>
+
+                <div class="abilities">
+                    <h3>⚡ Special Ability: Guardian's Blessing</h3>
+                    <p>Deploys a protective shield dome (20m radius) that blocks 70% of incoming damage for allies inside. Lasts 6 seconds. Additionally, heals nearby teammates for 5% HP per second while active. Cooldown: 20 seconds.</p>
+                </div>
+
+                <div class="rating">
+                    <div class="rating-item">
+                        <div class="rating-label">Firepower</div>
+                        <div class="rating-value">6/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Durability</div>
+                        <div class="rating-value">7/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Speed</div>
+                        <div class="rating-value">7/10</div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>✅ Strengths</h3>
+                    <ul class="stat-list">
+                        <li>Incredible team support capabilities</li>
+                        <li>Shield dome can save entire team during pushes</li>
+                        <li>Healing ability keeps allies in the fight longer</li>
+                        <li>Balanced mobility for repositioning</li>
+                        <li>Medium weapons provide decent firepower</li>
+                        <li>Essential for competitive team compositions</li>
+                        <li>Great at holding contested beacons</li>
+                    </ul>
+                </div>
+
+                <div class="stats-section weak-section">
+                    <h3>❌ Weaknesses</h3>
+                    <ul class="stat-list">
+                        <li>Low solo combat potential</li>
+                        <li>Relies heavily on team coordination</li>
+                        <li>Shield can be overwhelmed by focused fire</li>
+                        <li>Long ability cooldown leaves vulnerability windows</li>
+                        <li>Ineffective when separated from team</li>
+                        <li>Moderate durability insufficient for frontline tanking</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Retro Crisis -->
+            <div class="robot-card">
+                <div class="robot-header">
+                    <div class="robot-title">
+                        <h2>Retro Crisis</h2>
+                        <div class="robot-class">Heavy Assault</div>
+                    </div>
+                </div>
+                
+                <div class="robot-description">
+                    A powerful heavy assault robot designed for frontline combat. Retro Crisis excels at dealing massive damage while absorbing incoming fire with its reinforced armor plating. This mech is built for players who like to be in the thick of battle.
+                </div>
+
+                <div class="abilities">
+                    <h3>⚡ Special Ability: Crisis Mode</h3>
+                    <p>Activates an enhanced damage state while sacrificing some defense. During Crisis Mode, weapons deal 30% more damage but robot takes 15% more incoming damage. Perfect for aggressive pushes. Cooldown: 16 seconds.</p>
+                </div>
+
+                <div class="rating">
+                    <div class="rating-item">
+                        <div class="rating-label">Firepower</div>
+                        <div class="rating-value">9/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Durability</div>
+                        <div class="rating-value">8/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Speed</div>
+                        <div class="rating-value">5/10</div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>✅ Strengths</h3>
+                    <ul class="stat-list">
+                        <li>Exceptional damage output in close to medium range</li>
+                        <li>High durability allows it to hold positions effectively</li>
+                        <li>Crisis Mode ability turns the tide of battles</li>
+                        <li>Heavy weapon slots for devastating firepower</li>
+                        <li>Great for beacon capture and defense</li>
+                        <li>Intimidating presence on the battlefield</li>
+                    </ul>
+                </div>
+
+                <div class="stats-section weak-section">
+                    <h3>❌ Weaknesses</h3>
+                    <ul class="stat-list">
+                        <li>Slow movement speed makes it vulnerable to flanking</li>
+                        <li>Limited mobility - struggles to escape dangerous situations</li>
+                        <li>Crisis Mode increases vulnerability when active</li>
+                        <li>Easy target for long-range snipers</li>
+                        <li>High resource cost to upgrade and maintain</li>
+                        <li>Requires team support to be most effective</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Typhon -->
+            <div class="robot-card">
+                <div class="robot-header">
+                    <div class="robot-title">
+                        <h2>Typhon</h2>
+                        <div class="robot-class">Control Specialist</div>
+                    </div>
+                </div>
+                
+                <div class="robot-description">
+                    A terrifying control robot that specializes in disabling and suppressing enemy teams. Typhon can lock down multiple enemies at once, making it one of the most feared robots in competitive play.
+                </div>
+
+                <div class="abilities">
+                    <h3>⚡ Special Ability: Blackout 2.0</h3>
+                    <p>Deploys EMP blast that suppresses all enemy robots within 100m radius for 5 seconds. Suppressed enemies cannot use abilities and move 40% slower. Additionally gains 3 seconds of damage resistance. Cooldown: 20 seconds.</p>
+                </div>
+
+                <div class="rating">
+                    <div class="rating-item">
+                        <div class="rating-label">Firepower</div>
+                        <div class="rating-value">7/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Durability</div>
+                        <div class="rating-value">6/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Speed</div>
+                        <div class="rating-value">7/10</div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>✅ Strengths</h3>
+                    <ul class="stat-list">
+                        <li>Massive area suppression shuts down enemy abilities</li>
+                        <li>Can disable entire enemy teams simultaneously</li>
+                        <li>Built-in damage resistance during ability</li>
+                        <li>Excellent for breaking enemy pushes</li>
+                        <li>Game-changing in team fights</li>
+                        <li>Medium weapon slots provide versatility</li>
+                    </ul>
+                </div>
+
+                <div class="stats-section weak-section">
+                    <h3>❌ Weaknesses</h3>
+                    <ul class="stat-list">
+                        <li>Long cooldown leaves vulnerability windows</li>
+                        <li>Moderate health pool requires careful positioning</li>
+                        <li>Ineffective against spread-out enemies</li>
+                        <li>Heavily relies on ability to be effective</li>
+                        <li>Quantum radar immune enemies are problematic</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Scorpion -->
+            <div class="robot-card">
+                <div class="robot-header">
+                    <div class="robot-title">
+                        <h2>Scorpion</h2>
+                        <div class="robot-class">Assassin</div>
+                    </div>
+                </div>
+                
+                <div class="robot-description">
+                    A deadly teleporting assassin that strikes fear into enemy backlines. Scorpion excels at hunting down isolated targets and can escape before reinforcements arrive.
+                </div>
+
+                <div class="abilities">
+                    <h3>⚡ Special Ability: Sting</h3>
+                    <p>Teleports behind targeted enemy within 500m range, dealing backstab damage. Gains immunity shield for 3 seconds after teleport. Can teleport back to original position. Cooldown: 15 seconds.</p>
+                </div>
+
+                <div class="rating">
+                    <div class="rating-item">
+                        <div class="rating-label">Firepower</div>
+                        <div class="rating-value">8/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Durability</div>
+                        <div class="rating-value">5/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Speed</div>
+                        <div class="rating-value">9/10</div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>✅ Strengths</h3>
+                    <ul class="stat-list">
+                        <li>Devastating backstab assassinations</li>
+                        <li>Immunity shield allows safe engagement</li>
+                        <li>Can escape back to safety instantly</li>
+                        <li>Perfect for eliminating snipers and support</li>
+                        <li>High burst damage potential</li>
+                        <li>Excellent beacon contesting ability</li>
+                    </ul>
+                </div>
+
+                <div class="stats-section weak-section">
+                    <h3>❌ Weaknesses</h3>
+                    <ul class="stat-list">
+                        <li>Low health makes mistakes fatal</li>
+                        <li>Vulnerable after immunity wears off</li>
+                        <li>Requires precise timing and target selection</li>
+                        <li>Ineffective against grouped enemies</li>
+                        <li>High skill ceiling to master effectively</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Hawk -->
+            <div class="robot-card">
+                <div class="robot-header">
+                    <div class="robot-title">
+                        <h2>Hawk</h2>
+                        <div class="robot-class">Aerial Sniper</div>
+                    </div>
+                </div>
+                
+                <div class="robot-description">
+                    A unique flying robot that dominates from the skies. Hawk can take flight to gain superior positioning and rain death from above while remaining difficult to hit.
+                </div>
+
+                <div class="abilities">
+                    <h3>⚡ Special Ability: Flight</h3>
+                    <p>Takes flight for 20 seconds, gaining aerial view and increased range. While airborne, built-in beam weapon activates dealing continuous damage. Takes 30% less damage from ground enemies. Cooldown: 25 seconds.</p>
+                </div>
+
+                <div class="rating">
+                    <div class="rating-item">
+                        <div class="rating-label">Firepower</div>
+                        <div class="rating-value">8/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Durability</div>
+                        <div class="rating-value">6/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Speed</div>
+                        <div class="rating-value">8/10</div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>✅ Strengths</h3>
+                    <ul class="stat-list">
+                        <li>Aerial advantage provides superior positioning</li>
+                        <li>Built-in beam weapon adds constant pressure</li>
+                        <li>Damage resistance while flying increases survivability</li>
+                        <li>Can engage enemies behind cover</li>
+                        <li>Excellent for area denial and suppression</li>
+                        <li>Long flight duration dominates maps</li>
+                    </ul>
+                </div>
+
+                <div class="stats-section weak-section">
+                    <h3>❌ Weaknesses</h3>
+                    <ul class="stat-list">
+                        <li>Vulnerable when flight is on cooldown</li>
+                        <li>Easy target for other aerial robots</li>
+                        <li>Reflector shields counter beam weapon</li>
+                        <li>Limited effectiveness in enclosed maps</li>
+                        <li>Moderate ground mobility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ravana -->
+            <div class="robot-card">
+                <div class="robot-header">
+                    <div class="robot-title">
+                        <h2>Ravana</h2>
+                        <div class="robot-class">Transcendence Fighter</div>
+                    </div>
+                </div>
+                
+                <div class="robot-description">
+                    A spiritual warrior that transcends physical limitations. Ravana uses phasing technology to become untargetable while maintaining offensive capabilities, making it a formidable duelist.
+                </div>
+
+                <div class="abilities">
+                    <h3>⚡ Special Ability: Transcendence</h3>
+                    <p>Enters phase state for 5 seconds, becoming immune to 75% of damage. Has 2 charges. During phase, can still attack normally. Gains 20% speed boost. Cooldown per charge: 8 seconds.</p>
+                </div>
+
+                <div class="rating">
+                    <div class="rating-item">
+                        <div class="rating-label">Firepower</div>
+                        <div class="rating-value">9/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Durability</div>
+                        <div class="rating-value">7/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Speed</div>
+                        <div class="rating-value">8/10</div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>✅ Strengths</h3>
+                    <ul class="stat-list">
+                        <li>Multiple ability charges for sustained combat</li>
+                        <li>75% damage resistance makes it incredibly tanky</li>
+                        <li>Can attack while phased - unique advantage</li>
+                        <li>Two heavy weapons slots for massive firepower</li>
+                        <li>Excellent 1v1 dueling potential</li>
+                        <li>Speed boost aids aggressive plays</li>
+                    </ul>
+                </div>
+
+                <div class="stats-section weak-section">
+                    <h3>❌ Weaknesses</h3>
+                    <ul class="stat-list">
+                        <li>Still takes 25% damage while phased</li>
+                        <li>Completely vulnerable between ability uses</li>
+                        <li>Moderate base health without ability active</li>
+                        <li>Lockdown weapons can interrupt aggression</li>
+                        <li>Expensive to upgrade and maintain</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Loki -->
+            <div class="robot-card">
+                <div class="robot-header">
+                    <div class="robot-title">
+                        <h2>Loki</h2>
+                        <div class="robot-class">Trickster</div>
+                    </div>
+                </div>
+                
+                <div class="robot-description">
+                    The ultimate stealth specialist and beacon runner. Loki permanently operates in stealth mode, making it nearly invisible and perfect for tactical beacon captures and intelligence gathering.
+                </div>
+
+                <div class="abilities">
+                    <h3>⚡ Special Ability: Permanent Stealth</h3>
+                    <p>Always in stealth mode - cannot be detected by normal targeting. Only quantum radar can reveal location. Moves 20% faster than normal robots. Cannot mount weapons - purely support/beacon role.</p>
+                </div>
+
+                <div class="rating">
+                    <div class="rating-item">
+                        <div class="rating-label">Firepower</div>
+                        <div class="rating-value">0/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Durability</div>
+                        <div class="rating-value">4/10</div>
+                    </div>
+                    <div class="rating-item">
+                        <div class="rating-label">Speed</div>
+                        <div class="rating-value">10/10</div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>✅ Strengths</h3>
+                    <ul class="stat-list">
+                        <li>Permanent stealth is unmatched for beacon running</li>
+                        <li>Fastest beacon capture in the game</li>
+                        <li>Impossible to target without quantum radar</li>
+                        <li>Excellent for scouting enemy positions</li>
+                        <li>Can distract and frustrate enemy teams</li>
+                        <li>Perfect for securing early beacon advantage</li>
+                    </ul>
+                </div>
+
+                <div class="stats-section weak-section">
+                    <h3>❌ Weaknesses</h3>
+                    <ul class="stat-list">
+                        <li>Zero combat capability - no weapons</li>
+                        <li>Useless in direct confrontations</li>
+                        <li>Quantum radar completely negates advantage</li>
+                        <li>Very low health - any hit is dangerous</li>
+                        <li>Doesn't contribute to team firepower</li>
+                        <li>Ineffective on small maps with few beacons</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Create snowflakes
+        function createSnowflakes() {
+            for (let i = 0; i < 60; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = '❄';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = (Math.random() * 6 + 6) + 's';
+                snowflake.style.animationDelay = Math.random() * 6 + 's';
+                snowflake.style.fontSize = (Math.random() * 1.5 + 0.8) + 'em';
+                document.body.appendChild(snowflake);
+            }
+        }
+
+        createSnowflakes();
+
+        // Epic explosion effect on click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('img')) {
+                createExplosion(e.clientX, e.clientY);
+                shootBullets(e.clientX, e.clientY);
+            }
+        });
+
+        function createExplosion(x, y) {
+            const explosions = ['💥', '💣', '🔥', '⚡', '✨', '💫', '🌟'];
+            const explosion = document.createElement('div');
+            explosion.className = 'explosion';
+            explosion.textContent = explosions[Math.floor(Math.random() * explosions.length)];
+            explosion.style.left = x + 'px';
+            explosion.style.top = y + 'px';
+            document.body.appendChild(explosion);
+            
+            setTimeout(() => explosion.remove(), 1200);
+        }
+
+        function shootBullets(x, y) {
+            const numBullets = 8;
+            for (let i = 0; i < numBullets; i++) {
+                const bullet = document.createElement('div');
+                bullet.className = 'bullet';
+                bullet.style.left = x + 'px';
+                bullet.style.top = y + 'px';
+                document.body.appendChild(bullet);
+                
+                const angle = (Math.PI * 2 / numBullets) * i;
+                const speed = 7;
+                const vx = Math.cos(angle) * speed;
+                const vy = Math.sin(angle) * speed;
+                
+                let posX = x;
+                let posY = y;
+                let distance = 0;
+                const maxDistance = 300;
+                
+                const interval = setInterval(() => {
+                    posX += vx;
+                    posY += vy;
+                    distance += speed;
+                    
+                    bullet.style.left = posX + 'px';
+                    bullet.style.top = posY + 'px';
+                    
+                    if (distance >= maxDistance) {
+                        clearInterval(interval);
+                        createExplosion(posX, posY);
+                        bullet.remove();
+                    }
+                }, 16);
+            }
+        }
+
+        // Random background explosions
+        setInterval(() => {
+            if (Math.random() > 0.92) {
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                createExplosion(x, y);
+            }
+        }, 2500);
+
+        // Robot card animations
+        document.querySelectorAll('.robot-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.closest('img')) {
+                    const icon = this.querySelector('.robot-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.4) rotate(720deg)';
+                        icon.style.transition = 'transform 0.8s ease';
+                        setTimeout(() => {
+                            icon.style.transform = 'scale(1) rotate(0deg)';
+                        }, 800);
+                        
+                        // Extra explosions
+                        const rect = this.getBoundingClientRect();
+                        for (let i = 0; i < 5; i++) {
+                            setTimeout(() => {
+                                const offsetX = rect.left + Math.random() * rect.width;
+                                const offsetY = rect.top + Math.random() * rect.height;
+                                createExplosion(offsetX, offsetY);
+                            }, i * 120);
+                        }
+                    }
+                }
+            });
+        });
+
+        // Epic intro
+        window.addEventListener('load', () => {
+            const header = document.querySelector('header');
+            const rect = header.getBoundingClientRect();
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const x = rect.left + Math.random() * rect.width;
+                    const y = rect.top + Math.random() * rect.height;
+                    createExplosion(x, y);
+                }, i * 80);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -568,6 +568,7 @@
     <div class="paw-print">🐾</div>
 
     <header>
+        <img src="logo.jpg" alt="Melissa's Pawsome Pet Care Logo" style="max-width: 200px; height: auto; margin-bottom: 20px; border-radius: 20px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);">
         <h1>🐶 Melissa's Pawsome Pet Care 🐱</h1>
         <p class="tagline">Where Every Pet Gets VIP Treatment! ✨</p>
     </header>
@@ -614,6 +615,18 @@
                     <div class="service-icon">🐰</div>
                     <h3>Bunny Care</h3>
                     <p>Feeding, cage cleaning, and gentle care for your adorable hopping friend!</p>
+                    <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Click to learn more ✨</p>
+                </div>
+                <div class="service-item" onclick="openModal('reiki')" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                    <div class="service-icon">🧘‍♀️✨</div>
+                    <h3>Animal Reiki</h3>
+                    <p>Gentle energy healing to promote relaxation, reduce stress, and support your pet's wellbeing!</p>
+                    <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Click to learn more ✨</p>
+                </div>
+                <div class="service-item" onclick="openModal('communication')" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);">
+                    <div class="service-icon">💬🐾</div>
+                    <h3>Animal Communication</h3>
+                    <p>Intuitive connection to understand your pet's thoughts, feelings, and needs on a deeper level!</p>
                     <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">Click to learn more ✨</p>
                 </div>
             </div>
@@ -792,6 +805,70 @@
 
                 <p style="margin-top: 20px; font-style: italic; color: #4a90e2;">
                     <strong>Special Touch:</strong> We understand bunny behavior and body language, ensuring we provide care that respects their sensitive nature!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="reikiModal" class="modal" onclick="closeModalOnBackground(event, 'reiki')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal('reiki'); event.stopPropagation();">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">🧘‍♀️✨</div>
+                <h2 class="modal-title">Animal Reiki Healing</h2>
+            </div>
+            <div class="modal-body">
+                <p><strong>Gentle energy healing for your beloved pet!</strong></p>
+                <p>Reiki is a gentle, non-invasive energy healing practice that can help your pet feel calm, balanced, and relaxed. Perfect for anxious pets, those recovering from illness, or simply to enhance their overall wellbeing.</p>
+                
+                <h3 style="color: #667eea; margin-top: 25px; margin-bottom: 15px;">Benefits of Animal Reiki:</h3>
+                <ul>
+                    <li>😌 <strong>Stress & Anxiety Relief:</strong> Helps calm nervous or anxious pets</li>
+                    <li>🏥 <strong>Recovery Support:</strong> Promotes healing after surgery or illness</li>
+                    <li>💆 <strong>Pain Management:</strong> Can help ease discomfort and chronic pain</li>
+                    <li>🧘 <strong>Emotional Balance:</strong> Supports emotional wellbeing and behavioral issues</li>
+                    <li>🌟 <strong>Enhanced Vitality:</strong> Boosts overall energy and immune function</li>
+                    <li>🤝 <strong>Deepened Bond:</strong> Strengthens the connection between you and your pet</li>
+                    <li>🕊️ <strong>End-of-Life Comfort:</strong> Provides peace and comfort for senior or hospice pets</li>
+                </ul>
+
+                <h3 style="color: #667eea; margin-top: 25px; margin-bottom: 15px;">What to Expect:</h3>
+                <p>Sessions are gentle and respect your pet's boundaries. Your pet can sit, lie down, or move freely during the session. Most animals naturally relax and may even fall asleep! Sessions can be done hands-on or from a distance.</p>
+
+                <p style="margin-top: 20px; font-style: italic; color: #4a90e2;">
+                    <strong>Perfect For:</strong> All animals - dogs, cats, horses, rabbits, birds, and more! No animal is too big or too small for Reiki.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="communicationModal" class="modal" onclick="closeModalOnBackground(event, 'communication')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal('communication'); event.stopPropagation();">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">💬🐾</div>
+                <h2 class="modal-title">Animal Communication</h2>
+            </div>
+            <div class="modal-body">
+                <p><strong>Understand what your pet is really thinking and feeling!</strong></p>
+                <p>Animal communication is an intuitive practice that allows us to connect with your pet on a deeper level, understanding their thoughts, emotions, and needs. It's like having a conversation with your pet!</p>
+                
+                <h3 style="color: #667eea; margin-top: 25px; margin-bottom: 15px;">How It Can Help:</h3>
+                <ul>
+                    <li>🗣️ <strong>Behavioral Understanding:</strong> Discover the reasons behind certain behaviors</li>
+                    <li>😟 <strong>Address Fears & Anxieties:</strong> Learn what's troubling your pet</li>
+                    <li>🏥 <strong>Health Insights:</strong> Gain awareness of physical discomfort or pain locations</li>
+                    <li>🏠 <strong>Life Changes:</strong> Help pets adjust to moves, new family members, or schedule changes</li>
+                    <li>❤️ <strong>Deepen Your Bond:</strong> Better understand your pet's preferences and personality</li>
+                    <li>👋 <strong>Lost Pets:</strong> Connect with lost animals to help locate them</li>
+                    <li>🌈 <strong>After-Life Connection:</strong> Communicate with pets who have passed to bring closure and peace</li>
+                </ul>
+
+                <h3 style="color: #667eea; margin-top: 25px; margin-bottom: 15px;">What You'll Receive:</h3>
+                <p>A detailed report of the communication session, including messages from your pet, insights into their feelings, and answers to your questions. Sessions can be done in-person or remotely with a photo of your pet.</p>
+
+                <p style="margin-top: 20px; font-style: italic; color: #4a90e2;">
+                    <strong>Special Note:</strong> Animal communication complements veterinary care but does not replace professional medical diagnosis. Always consult your vet for health concerns.
                 </p>
             </div>
         </div>
